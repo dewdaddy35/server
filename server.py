@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import json
 from config import me
 from mock_data import catalog
@@ -29,15 +29,69 @@ def about_me():
     
     return json.dumps(me)
 
+
+
 @app.get("/api/product")
 def get_products():
     return json.dumps(catalog)
 
 
+@app.post("/api/product")#add data 
+def save_products():
+    product = request.get_json()
+    #todo: save to database instead of in memory array
+    catalog.append(product)
+    return json.dump({"status":"saved"})
+
 @app.get("/api/product/count")
 def product_count():
     total = len(catalog)
     return json.dumps({"total": total})
+
+@app.get("/api/reports/total")
+def get_total():
+    total = 0
+    for product in catalog:
+        total += product["price"]
+    
+    return json.dumps({"value": total})#subtotal of all products ordered
+#get /api/catagories
+# should return a list of the catagories
+@app.get("/api/categories")
+def get_categories():
+    count = []
+    for product in catalog:
+       category = product["category"]
+      
+       if category  not in count:
+           count.append(category)
+    return json.dumps(count)
+
+# get /api/product/category/shoes
+# return a list of products for given category
+@app.get("/api/product/category/<category>")
+def product_by_category(category):
+
+    items = []
+
+    for product in catalog:
+        if product["category"].lower() == category.lower():
+            items.append(product)
+        
+    return json.dumps(items)
+   
+
+#get /api/product/search/items
+@app.get("/api/product/search/<term>")
+def product_search(term):
+
+    search = []
+    for product in catalog:
+        if term.lower() in product["title"].lower():
+            search.append(product)
+
+    return json.dumps(search)
+
 
 
 
