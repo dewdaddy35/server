@@ -1,0 +1,22 @@
+# Activate venv
+windows:
+venv\Scripts\Activate
+
+# run the flask project
+----old way
+py3 server.py
+
+----New way
+flask --app server.py run --debug
+
+stop server
+ctrl + c
+# Certificate for server
+py -m pip install pymongo "pymongo[srv]" certifi
+
+# mongodb
+FSDI
+Test1234
+
+# connect to mongodb server(Eric server)
+mongodb+srv://FSDI:Test1234@fsdi.4arocgi.mongodb.net/?retryWrites=true&w=majority
