@@ -1,6 +1,6 @@
 # Activate venv
 windows:
-venv\Scripts\Activate
+VMachine\Scripts\Activate
 
 # run the flask project
 ----old way

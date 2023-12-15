@@ -2,14 +2,14 @@ catalog = [
   {
         "title": "Running Shoes",
         "category":"Shoes",
-        "price":45.00,
+        "price":45.99,
         "image": "blackrunners.jpg",
         "_id": "1",
     },
     {
         "title": "Basketball Shoes",
         "category":"Shoes",
-        "price":105.00,
+        "price":105.33,
         "image": "hightops.jpg",
         "_id": "2"
     },
@@ -41,7 +41,7 @@ catalog = [
         "title": "Sweat Jacket",
         "category":"Clothing",
         "price":85.00,
-        "image": "SweatJacket.jpg",
+        "image": "sweat jacket.jpg",
         "_id": "6",
     },
     {

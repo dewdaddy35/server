@@ -2,10 +2,12 @@ from flask import Flask, request
 from config import me,db
 from mock_data import catalog
 import json
+from flask_cors import CORS
 
 #flask is helping us create the APIs
 
 app = Flask(__name__)#name of the folder (Server)
+CORS(app) # warning: this line disables CORS policy
 
 @app.get("/")
 def home():
@@ -40,9 +42,8 @@ def get_products():
 def save_products():
     product = request.get_json()
     #save to database 
-    db.products.insert_one(product)
-    print(product)
-    return json.dumps(product)
+    catalog.append(product)
+    return json.dumps({"status":"saved"})
 
 @app.get("/api/product/count")
 def product_count():
